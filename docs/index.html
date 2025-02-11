@@ -145,8 +145,29 @@
       transform: scale(1.1);
       opacity: 1;
     }
-
     .social-links a {
+      display: inline-block;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+        /* Social links container */
+        .social-links-bottom {
+      margin-top: 5px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .social-links-bottom img {
+      width: 40px;
+      height: auto;
+      transition: all 0.3s;
+      opacity: 0.6;
+    }
+    .social-links-bottom img:hover {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+    .social-links-bottom a {
       display: inline-block;
       -webkit-tap-highlight-color: transparent;
     }
@@ -199,6 +220,11 @@
           </a>
           <a href="https://huggingface.co/empath-e" target="_blank" rel="noopener noreferrer">
             <img src="static/hf-logo.svg" alt="Hugging Face">
+          </a>
+        </div>
+        <div class="social-links-bottom">
+          <a href="mailto:contact@empathe.ai" target="_blank" rel="noopener noreferrer">
+            <img src="static/mail.svg" alt="Email">
           </a>
         </div>
     </div>
