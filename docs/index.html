@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Set the theme color for Android and supported browsers -->
+  <meta name="theme-color" content="#ffa751" />
+
+  <!-- Set the status bar style for iOS when added to Home Screen -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
   <title>Empathic Intelligence Inc. - Coming Soon</title>
 
   <!-- Open Graph Meta Tags -->
@@ -70,10 +76,10 @@
     /* Top Trapezoid: full width at top, 80% at bottom */
     .top-trapezoid {
       position: absolute;
-      top: -10vh;
+      top: -10svh;
       left: 0;
       width: 100%;
-      height: 120vh; /* adjust height as needed */
+      height: 120svh; /* adjust height as needed */
       background: rgba(255, 255, 255, 0.3);
       /* Top edge is full width; bottom edge is 80% centered */
       clip-path: polygon(0 0, 100% 0, 50% 100%, 50% 100%);
@@ -83,10 +89,10 @@
     /* Bottom Trapezoid: 80% at top, full width at bottom */
     .bottom-trapezoid {
       position: absolute;
-      bottom: -10vh;
+      bottom: -10svh;
       left: 0;
       width: 100%;
-      height: 120vh; /* adjust height as needed */
+      height: 120svh; /* adjust height as needed */
       background: rgba(255, 255, 255, 0.3);
       /* Top edge is 80% centered; bottom edge is full width */
       clip-path: polygon(50% 0, 50% 0, 100% 100%, 0 100%);
