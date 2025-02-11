@@ -32,7 +32,7 @@
 
     body {
       font-family: 'Trebuchet MS', Tahoma, sans-serif;
-      height: 100vh;
+      height: 100svh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -40,6 +40,7 @@
       padding: 20px;
       position: relative;
       color: white;
+      overflow: hidden;
     }
 
     /* Container that holds the logo and text */
@@ -64,6 +65,32 @@
       clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
       z-index: -1;
       filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+    }
+
+    /* Top Trapezoid: full width at top, 80% at bottom */
+    .top-trapezoid {
+      position: absolute;
+      top: -10vh;
+      left: 0;
+      width: 100%;
+      height: 120vh; /* adjust height as needed */
+      background: rgba(255, 255, 255, 0.3);
+      /* Top edge is full width; bottom edge is 80% centered */
+      clip-path: polygon(0 0, 100% 0, 50% 100%, 50% 100%);
+      z-index: -10;
+    }
+
+    /* Bottom Trapezoid: 80% at top, full width at bottom */
+    .bottom-trapezoid {
+      position: absolute;
+      bottom: -10vh;
+      left: 0;
+      width: 100%;
+      height: 120vh; /* adjust height as needed */
+      background: rgba(255, 255, 255, 0.3);
+      /* Top edge is 80% centered; bottom edge is full width */
+      clip-path: polygon(50% 0, 50% 0, 100% 100%, 0 100%);
+      z-index: -10;
     }
 
     /* Logo (main brand logo) */
@@ -141,6 +168,10 @@
 </head>
 <body>
   <!-- Wrap content in a container (uncomment the following div if you wish to use it) -->
+  <!-- Top and Bottom Trapezoids -->
+  <div class="top-trapezoid"></div>
+  <div class="bottom-trapezoid"></div>
+
   <!-- <div class="container"> -->
     <div>
         <!-- Logo Image (ensure the path is correct) -->
