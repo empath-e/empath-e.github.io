@@ -1,1 +1,72 @@
-Hello World!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Empathic Intelligence Inc. - Coming Soon</title>
+  <style>
+    /* Reset some default styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Use a warm gradient background */
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffede9, #ffe2c5);
+      color: #000;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .logo {
+      width: 150px;
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .coming-soon {
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .coming-soon {
+        font-size: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Logo Image (ensure the path is correct) -->
+    <img src="static/logo.svg" alt="Empathic Intelligence Inc. Logo" class="logo" />
+    <!-- Company Name -->
+    <h1>Empathic Intelligence Inc.</h1>
+    <!-- Coming Soon Tagline -->
+    <p class="coming-soon">Coming soon</p>
+  </div>
+</body>
+</html>
