@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Set the theme color for Android and supported browsers -->
-  <meta name="theme-color" content="#ffa751" />
+  <meta name="theme-color" content="#ffe2c5" />
 
   <!-- Set the status bar style for iOS when added to Home Screen -->
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -30,10 +30,12 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
     html {
-      background: linear-gradient(135deg, #ffede9, #ffe2c5);
+      /* background: linear-gradient(135deg, #ffede9, #ffe2c5); */
+      background: #ffe2c5;
     }
 
     body {
@@ -75,10 +77,10 @@
     /* Top Trapezoid: full width at top, 80% at bottom */
     .top-trapezoid {
       position: absolute;
-      top: -10svh;
+      top: 0;
       left: 0;
       width: 100%;
-      height: 120svh; /* adjust height as needed */
+      height: 100svh; /* adjust height as needed */
       background: rgba(255, 255, 255, 0.3);
       /* Top edge is full width; bottom edge is 80% centered */
       clip-path: polygon(0 0, 100% 0, 50% 100%, 50% 100%);
@@ -88,10 +90,10 @@
     /* Bottom Trapezoid: 80% at top, full width at bottom */
     .bottom-trapezoid {
       position: absolute;
-      bottom: -10svh;
+      bottom: 0;
       left: 0;
       width: 100%;
-      height: 120svh; /* adjust height as needed */
+      height: 100svh; /* adjust height as needed */
       background: rgba(255, 255, 255, 0.3);
       /* Top edge is 80% centered; bottom edge is full width */
       clip-path: polygon(50% 0, 50% 0, 100% 100%, 0 100%);
@@ -142,6 +144,11 @@
     .social-links img:hover {
       transform: scale(1.1);
       opacity: 1;
+    }
+
+    .social-links a {
+      display: inline-block;
+      -webkit-tap-highlight-color: transparent;
     }
 
     /* Responsive adjustments */
