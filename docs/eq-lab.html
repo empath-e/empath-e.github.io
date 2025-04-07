@@ -71,6 +71,9 @@
           left: 50%;
           transform: translate(-50%, -50%);
           background-color: var(--teal-dark); /* Light background */
+          background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' opacity='0.33' viewBox='0 0 24 24' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xml:space='preserve' style='fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;'%3E%3Cg transform='matrix(0.75288,0,0,0.75288,2.91932,5.02019)'%3E%3Cpath d='M10,20L10,14L14,14L14,20L19,20L19,12L22,12L12,3L2,12L5,12L5,20L10,20Z' style='fill:rgb(51,51,51);fill-rule:nonzero;'/%3E%3C/g%3E%3Cg transform='matrix(1,0,0,1,0.950619,1.64228)'%3E%3Cg transform='matrix(0.696126,-0.717919,0.717919,0.696126,-4.81729,5.11752)'%3E%3Ctext x='3.637px' y='8.249px' style='font-family:Arial-BoldMT, Arial, sans-serif;font-weight:700;font-size:3.466px;fill:rgb(51,51,51);'%3EE%3C/text%3E%3C/g%3E%3Cg transform='matrix(0.887161,-0.461461,0.461461,0.887161,-2.43098,3.15545)'%3E%3Ctext x='5.237px' y='6.549px' style='font-family:Arial-BoldMT, Arial, sans-serif;font-weight:700;font-size:3.466px;fill:rgb(51,51,51);'%3EM%3C/text%3E%3C/g%3E%3Cg transform='matrix(0.980679,-0.195623,0.195623,0.980679,-0.87557,1.63313)'%3E%3Ctext x='7.83px' y='5.249px' style='font-family:Arial-BoldMT, Arial, sans-serif;font-weight:700;font-size:3.466px;fill:rgb(51,51,51);'%3EP%3C/text%3E%3C/g%3E%3Cg transform='matrix(0.999966,0.00830352,-0.00830352,0.999966,0.0402687,-0.0816043)'%3E%3Ctext x='9.848px' y='4.809px' style='font-family:Arial-BoldMT, Arial, sans-serif;font-weight:700;font-size:3.466px;fill:rgb(51,51,51);'%3EA%3C/text%3E%3C/g%3E%3Cg transform='matrix(0.977819,0.209451,-0.209451,0.977819,1.278,-2.42771)'%3E%3Ctext x='12.101px' y='4.82px' style='font-family:Arial-BoldMT, Arial, sans-serif;font-weight:700;font-size:3.466px;fill:rgb(51,51,51);'%3ET%3C/text%3E%3C/g%3E%3Cg transform='matrix(0.897487,0.441041,-0.441041,0.897487,3.76722,-5.72338)'%3E%3Ctext x='14.195px' y='5.242px' style='font-family:Arial-BoldMT, Arial, sans-serif;font-weight:700;font-size:3.466px;fill:rgb(51,51,51);'%3EH%3C/text%3E%3C/g%3E%3Cg transform='matrix(0.786835,0.617163,-0.617163,0.786835,7.45364,-8.75651)'%3E%3Ctext x='16.403px' y='6.412px' style='font-family:Arial-BoldMT, Arial, sans-serif;font-weight:700;font-size:3.466px;fill:rgb(51,51,51);'%3EI%3C/text%3E%3C/g%3E%3Cg transform='matrix(0.619021,0.785374,-0.785374,0.619021,12.0233,-10.8918)'%3E%3Ctext x='17.238px' y='6.947px' style='font-family:Arial-BoldMT, Arial, sans-serif;font-weight:700;font-size:3.466px;fill:rgb(51,51,51);'%3EC%3C/text%3E%3C/g%3E%3C/g%3E%3C/svg%3E");          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 75%;
           border-radius: 50%;
           display: flex;
           flex-direction: column;
@@ -152,6 +155,7 @@
 
         /* MEDICAL (Bottom Left) */
         .segment.medical {
+          pointer-events: none;
           bottom: 0;
           left: 0;
           background-color: var(--grey-dark);
@@ -166,6 +170,7 @@
 
         /* DIARY (Bottom Right) */
         .segment.diary {
+          pointer-events: none;
           bottom: 0;
           right: 0;
           background-color: var(--grey-dark);
@@ -236,17 +241,15 @@
             </a>
             <!-- Make anchor links point within the page if content exists -->
             <!-- If no content exists yet, maybe link to '#' or disable temporarily -->
-            <a href="#medical" class="segment medical">
+            <a href="#medical" class="segment medical" disabled aria-disabled="true">
                 <span>MEDICAL</span>
             </a>
-            <a href="#diary" class="segment diary">
+            <a href="#diary" class="segment diary" disabled aria-disabled="true">
                 <span>DIARY</span>
             </a>
 
             <!-- Center Circle - Links back to the main site root -->
             <a href="https://empathe.ai" class="center-circle">
-                <span>EMPATH\C</span>
-                <span>/NS\GHT</span>
             </a>
         </div>
     </div>
