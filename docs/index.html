@@ -3,29 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Set the theme color for Android and supported browsers -->
-  <meta name="theme-color" content="#FFEBD7" />
+  <!-- Set the theme color for Android (using the new dark background) -->
+  <meta name="theme-color" content="#151B27" />
 
-  <!-- Set the status bar style for iOS when added to Home Screen -->
+  <!-- Set the status bar style for iOS -->
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-  <title>Empathic Intelligence Inc. - Coming Soon</title>
+  <title>Empath\c /ntell\gence Inc. - Coming Soon</title>
 
-  <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="Empathic Intelligence Inc. - Coming Soon" />
-  <meta property="og:description" content="Stay tuned for the launch of Empathic Intelligence Inc.!" />
+  <!-- Open Graph Meta Tags (Keep these as they are good for sharing) -->
+  <meta property="og:title" content="Empathic Intelligence Inc." />
+  <meta property="og:description" content="Exploring the frontiers of Empathic AI. EQ Lab Demo available." />
   <meta property="og:image" content="https://empathe.ai/static/preview.png" />
   <meta property="og:url" content="https://empathe.ai/" />
   <meta property="og:type" content="website" />
 
-  <!-- Twitter Card Meta Tags -->
+  <!-- Twitter Card Meta Tags (Keep these) -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Empathic Intelligence Inc. - Coming Soon" />
-  <meta name="twitter:description" content="Stay tuned for the launch of Empathic Intelligence Inc.!" />
+  <meta name="twitter:title" content="Empathic Intelligence Inc." />
+  <meta name="twitter:description" content="Exploring the frontiers of Empathic AI. EQ Lab Demo available." />
   <meta name="twitter:image" content="https://empathe.ai/static/preview.png" />
 
   <style>
-    /* Reset some default styling */
+    /* Define colors inspired by main.css */
+    :root {
+      --bg-color: #151B27;
+      --text-primary: #e4e4d8; /* Was --teal-dark */
+      --text-secondary: #a0a0a0; /* Lighter grey text from demo */
+      --accent-color: #f0f0e0; /* Was --teal-medium */
+      --separator-color: #2a3140; /* A slightly lighter separator */
+      --transition-speed: 0.3s;
+    }
+
+    /* Reset and Basic Body Styling */
     * {
       margin: 0;
       padding: 0;
@@ -34,228 +44,167 @@
     }
 
     html {
-      /* background: linear-gradient(135deg, #ffede9, #ffe2c5); */
-      background: #ffe2c5;
+      background-color: var(--bg-color);
     }
 
     body {
-      font-family: 'Trebuchet MS', Tahoma, sans-serif;
-      height: 100svh;
+      /* Use system fonts like in main.css */
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+                   Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      min-height: 100svh; /* Use min-height to ensure content is visible if it grows */
       display: flex;
+      flex-direction: column; /* Stack content vertically */
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 20px;
-      position: relative;
-      color: white;
+      padding: 30px 20px; /* Add some padding */
+      color: var(--text-primary);
+      background-color: var(--bg-color);
     }
 
-    /* Container that holds the logo and text */
-    .container {
-      position: relative;
+    /* Main content container */
+    .content-wrapper {
       max-width: 600px;
       width: 100%;
-      padding: 40px;
-      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px; /* Spacing between elements */
     }
 
-    /* Create the triangle background behind the container */
-    .container::before {
-      content: "";
-      position: absolute;
-      top: -40%;
-      left: 0;
-      width: 100%;
-      height: 150%;
-      /* Warm golden-to-orange gradient */
-      background: linear-gradient(135deg, #ffe29f, #ffa751);
-      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-      z-index: -1;
-      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
-    }
-
-    /* Top Trapezoid: full width at top, 80% at bottom */
-    .top-trapezoid {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100svh; /* adjust height as needed */
-      background: rgba(255, 255, 255, 0.3);
-      /* Top edge is full width; bottom edge is 80% centered */
-      clip-path: polygon(0 0, 100% 0, 50% 100%, 50% 100%);
-      z-index: -10;
-    }
-
-    /* Bottom Trapezoid: 80% at top, full width at bottom */
-    .bottom-trapezoid {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 100svh; /* adjust height as needed */
-      background: rgba(255, 255, 255, 0.3);
-      /* Top edge is 80% centered; bottom edge is full width */
-      clip-path: polygon(50% 0, 50% 0, 100% 100%, 0 100%);
-      z-index: -10;
-    }
-
-    /* Logo (main brand logo) */
+    /* Logo */
     .logo {
-      width: 150px;
+      width: 120px; /* Slightly smaller logo */
       max-width: 100%;
       height: auto;
-      margin-bottom: 20px;
+      /* Optional: Add filter if logo doesn't look good on dark bg
+         filter: invert(1) brightness(1.5); */
     }
 
-    /* Rainbow animated text for the company name */
-    .rainbow-text {
-      background: linear-gradient(90deg, rgb(255, 145, 0), orange, rgb(255, 174, 67), orange, rgb(255, 145, 0));
-      background-size: 400%;
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: rainbow 12s linear infinite;
-      font-size: 2.5rem;
-      margin-bottom: 10px;
+    /* Company Name */
+    .company-name {
+      font-size: 2.2rem; /* Adjust size as needed */
+      color: var(--text-primary);
+      font-weight: 600; /* Make it slightly bolder */
       line-height: 1.2;
+      letter-spacing: 0.5px;
+    }
+    .company-name b { /* Style the slashes */
+       color: var(--accent-color);
+       font-weight: bold; /* Or keep normal */
+       display: inline-block; /* Helps with spacing/alignment */
+       margin: 0 -2px; /* Fine-tune spacing around slashes */
     }
 
-    /* Glowing "Coming soon" text */
-    .coming-soon {
-      font-size: 1.5rem;
-      letter-spacing: 1px;
-      animation: glow 1.5s ease-in-out infinite alternate;
+    /* Subtitle / Tagline */
+    .tagline {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      letter-spacing: 0.5px;
     }
 
     /* Demo button styling */
     .demo-button {
       display: inline-block;
-      margin-bottom: 15px;
-      padding: 10px 20px;
-      background: linear-gradient(135deg, #ffa751, #ffe29f);
-      color: white;
+      padding: 12px 28px;
+      background-color: var(--accent-color); /* Use accent color */
+      color: var(--bg-color); /* Dark text on light button */
       border: none;
-      border-radius: 25px;
+      border-radius: 8px; /* Slightly less rounded */
       font-size: 1rem;
-      font-weight: bold;
+      font-weight: 600;
       text-decoration: none;
-      transition: all 0.3s;
-      box-shadow: 0 4px 8px rgba(255, 167, 81, 0.3);
+      transition: all var(--transition-speed) ease-out;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       cursor: pointer;
     }
 
     .demo-button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(255, 167, 81, 0.5);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+      background-color: white; /* Brighten on hover */
     }
 
     /* Social links container */
     .social-links {
-      margin-top: 20px;
+      margin-top: 10px; /* Adjust spacing */
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 25px; /* Increase gap slightly */
     }
     .social-links img {
-      width: 40px;
+      width: 35px; /* Slightly smaller icons */
       height: auto;
-      transition: all 0.3s;
-      opacity: 0.5;
+      transition: all var(--transition-speed);
+      opacity: 0.7; /* Start slightly dimmer */
+      /* filter: invert(93%) sepia(9%) saturate(98%) hue-rotate(358deg) brightness(95%) contrast(87%); Recolor to --text-primary approx */
+       /* Use this filter instead if your svgs are black: */
+       /* filter: invert(1) brightness(0.9) contrast(1.2); */
     }
     .social-links img:hover {
-      transform: scale(1.1);
       opacity: 1;
+      transform: scale(1.1);
+      /* filter: invert(96%) sepia(17%) saturate(165%) hue-rotate(358deg) brightness(118%) contrast(89%); Recolor to --accent-color approx */
+        /* Use this filter instead on hover if your svgs are black: */
+        /* filter: invert(1) brightness(1) contrast(1); */
     }
     .social-links a {
       display: inline-block;
+      line-height: 0; /* Prevent extra space below image */
       -webkit-tap-highlight-color: transparent;
     }
 
-        /* Social links container */
-        .social-links-bottom {
-      margin-top: 5px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-    .social-links-bottom img {
-      width: 40px;
-      height: auto;
-      transition: all 0.3s;
-      opacity: 0.6;
-    }
-    .social-links-bottom img:hover {
-      transform: scale(1.1);
-      opacity: 1;
-    }
-    .social-links-bottom a {
-      display: inline-block;
-      -webkit-tap-highlight-color: transparent;
-    }
 
     /* Responsive adjustments */
     @media (max-width: 480px) {
-      .rainbow-text {
-        font-size: 2rem;
+      .company-name {
+        font-size: 1.8rem;
       }
-      .coming-soon {
-        font-size: 1.25rem;
+      .tagline {
+        font-size: 1rem;
       }
       .demo-button {
         font-size: 0.9rem;
-        padding: 8px 16px;
+        padding: 10px 22px;
+      }
+      .content-wrapper {
+        gap: 20px;
+      }
+      .social-links img {
+        width: 30px;
       }
     }
 
-    /* Keyframes for the rainbow text animation */
-    @keyframes rainbow {
-      0% { background-position: 0%; }
-      100% { background-position: 400%; }
-    }
-
-    /* Keyframes for the glowing effect on "Coming soon" */
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 2px #fff, 0 0 10px #ffa751, 0 0 15px #ffa751, 0 0 20px #ffa751;
-      }
-      to {
-        text-shadow: 0 0 3px #fff, 0 0 20px #ffa751, 0 0 30px #ffa751, 0 0 40px #ffa751;
-      }
-    }
   </style>
 </head>
 <body>
-  <!-- Wrap content in a container (uncomment the following div if you wish to use it) -->
-  <!-- Top and Bottom Trapezoids -->
-  <div class="top-trapezoid"></div>
-  <div class="bottom-trapezoid"></div>
 
-  <!-- <div class="container"> -->
-    <div>
-        <!-- Logo Image (ensure the path is correct) -->
-        <img src="static/logo.svg" alt="Empathic Intelligence Inc. Logo" class="logo" />
-        <!-- Company Name with animated rainbow text -->
-        <h1 class="rainbow-text">Empathic<br />Intelligence Inc.</h1>
-        <!-- Demo Button -->
-        <!-- <a href="https://insight.empathe.ai" target="_blank" rel="noopener noreferrer" class="demo-button">Try Our Early Insight Demo</a> -->
-        <!-- Coming Soon Tagline with glowing effect -->
-        <p class="coming-soon">More coming soon</p>
-        <!-- Social links -->
-        <div class="social-links">
-          <a href="https://github.com/empath-e" target="_blank" rel="noopener noreferrer">
-            <img src="static/github-mark-white.svg" alt="GitHub">
-          </a>
-          <a href="https://huggingface.co/empath-e" target="_blank" rel="noopener noreferrer">
-            <img src="static/hf-logo.svg" alt="Hugging Face">
-          </a>
-        </div>
-        <div class="social-links-bottom">
-          <a href="mailto:contact@empathe.ai" target="_blank" rel="noopener noreferrer">
-            <img src="static/mail.svg" alt="Email">
-          </a>
-        </div>
-    </div>
-  <!-- </div> -->
+  <div class="content-wrapper">
+      <!-- Logo Image -->
+      <img src="static/logo.svg" alt="Empathic Intelligence Inc. Logo" class="logo" />
+
+      <!-- Company Name -->
+      <h1 class="company-name">EMPATH<b>\</b>C<br /><b>/</b>NTELL<b>\</b>GENCE Inc.</h1>
+
+      <!-- Link to the Demo -->
+      <a href="https://empathe.ai/ei-lab" target="_blank" rel="noopener noreferrer" class="demo-button">Explore the EQ Lab Demo</a>
+
+      <!-- Tagline -->
+      <p class="tagline">More coming soon</p>
+
+      <!-- Social links -->
+      <div class="social-links">
+        <a href="https://github.com/empath-e" target="_blank" rel="noopener noreferrer" title="GitHub">
+          <img src="static/github-mark-white.svg" alt="GitHub"> <!-- Assuming this is already white -->
+        </a>
+        <a href="https://huggingface.co/empath-e" target="_blank" rel="noopener noreferrer" title="Hugging Face">
+          <img src="static/hf-logo-pirate.svg" alt="Hugging Face"> <!-- Needs styling/filter or a light version -->
+        </a>
+         <a href="mailto:contact@empathe.ai" target="_blank" rel="noopener noreferrer" title="Email">
+           <img src="static/mail.svg" alt="Email"> <!-- Needs styling/filter or a light version -->
+         </a>
+      </div>
+  </div>
+
 </body>
 </html>

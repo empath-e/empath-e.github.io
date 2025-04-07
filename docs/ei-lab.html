@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EQ Lab Demo - Empathic Intelligence Inc.</title>
+    <style>
+        /* CSS directly embedded from main.css */
+
+        /* Basic Reset & Body Styling */
+        :root {
+          --bg-color: #151B27; /* Dark background */
+          --teal-dark: #e4e4d8; /* Light cream/beige for center */
+          --teal-medium: #f0f0e0; /* Slightly lighter cream/beige for top segments */
+          --grey-dark: #4a4a4a; /* Dark grey for bottom segments */
+          --text-light: #333;    /* Darker text for light backgrounds */
+          --text-grey: #a0a0a0; /* Lighter grey text for dark backgrounds */
+          --separator-color: #151B27; /* Separator line color (matches background) */
+
+          --ring-size: 400px; /* Adjust size of the whole thing */
+          --center-size-ratio: 0.5; /* Center circle size relative to ring */
+          --separator-width: 4px; /* Thickness of the separator lines */
+          --transition-speed: 0.3s;
+
+          /* Adjust ring size for smaller screens */
+          @media (max-width: 480px) {
+            --ring-size: 300px;
+          }
+          @media (max-width: 360px) {
+             --ring-size: 260px;
+          }
+        }
+
+        body {
+          margin: 0;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+            Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+          background-color: var(--bg-color);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100dvh; /* Use dvh for better mobile viewport height */
+          overflow: hidden; /* Hide potential overflows during scaling */
+        }
+
+        /* Container */
+        .eq-lab-container {
+          position: relative;
+          width: var(--ring-size);
+          height: var(--ring-size);
+        }
+
+        /* Outer Ring - Acts as positioning context */
+        .outer-ring {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          overflow: hidden; /* Clip segments to the circle */
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Slightly darker shadow on dark bg */
+        }
+
+        /* Center Circle */
+        .center-circle {
+          position: absolute;
+          width: calc(var(--ring-size) * var(--center-size-ratio));
+          height: calc(var(--ring-size) * var(--center-size-ratio));
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: var(--teal-dark); /* Light background */
+          border-radius: 50%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-decoration: none;
+          color: var(--text-light); /* Dark text */
+          font-size: calc(var(--ring-size) * 0.08); /* Responsive font size */
+          font-weight: bold;
+          line-height: 1.1;
+          text-align: center;
+          z-index: 10; /* Ensure it's above segments */
+          transition: transform var(--transition-speed) ease-out,
+                      background-color var(--transition-speed) ease-out;
+          border: var(--separator-width) solid var(--separator-color); /* Separator border */
+          box-sizing: border-box;
+        }
+
+        .center-circle:hover {
+          transform: translate(-50%, -50%) scale(1.05);
+          background-color: white; /* Brighten slightly on hover */
+        }
+
+        /* Segments - Common Styles */
+        .segment {
+          position: absolute;
+          width: 50%;
+          height: 50%;
+          overflow: hidden; /* Hide text overflow */
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-decoration: none;
+          font-size: calc(var(--ring-size) * 0.06); /* Responsive font size */
+          font-weight: 600;
+          box-sizing: border-box; /* Include borders in size calculation */
+          transition: transform var(--transition-speed) ease-out,
+                      filter var(--transition-speed) ease-out,
+                      background-color var(--transition-speed) ease-out;
+          -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+        }
+
+        .segment span {
+          display: block;
+          transform-origin: center center;
+          text-align: center;
+          transition: transform var(--transition-speed) ease-out;
+        }
+
+        /* Individual Segment Positioning & Styling */
+
+        /* VOICE (Top Left) */
+        .segment.voice {
+          top: 0;
+          left: 0;
+          background-color: var(--teal-medium);
+          color: var(--text-light); /* Dark text on light background */
+          transform-origin: bottom right; /* Rotate around center of the main circle */
+          border-right: calc(var(--separator-width) / 2) solid var(--separator-color);
+          border-bottom: calc(var(--separator-width) / 2) solid var(--separator-color);
+        }
+        .segment.voice span {
+          transform: rotate(-45deg) translate(0, 10%); /* Adjust text position/angle slightly */
+        }
+
+        /* CHAT (Top Right) */
+        .segment.chat {
+          top: 0;
+          right: 0;
+          background-color: var(--teal-medium);
+          color: var(--text-light); /* Dark text on light background */
+          transform-origin: bottom left;
+          border-left: calc(var(--separator-width) / 2) solid var(--separator-color);
+          border-bottom: calc(var(--separator-width) / 2) solid var(--separator-color);
+        }
+        .segment.chat span {
+          transform: rotate(45deg) translate(0, 10%);
+        }
+
+        /* MEDICAL (Bottom Left) */
+        .segment.medical {
+          bottom: 0;
+          left: 0;
+          background-color: var(--grey-dark);
+          color: var(--text-grey); /* Light text on dark background */
+          transform-origin: top right;
+          border-right: calc(var(--separator-width) / 2) solid var(--separator-color);
+          border-top: calc(var(--separator-width) / 2) solid var(--separator-color);
+        }
+        .segment.medical span {
+           transform: rotate(45deg) translate(0, -10%); /* Adjusted for bottom */
+        }
+
+        /* DIARY (Bottom Right) */
+        .segment.diary {
+          bottom: 0;
+          right: 0;
+          background-color: var(--grey-dark);
+           color: var(--text-grey); /* Light text on dark background */
+          transform-origin: top left;
+          border-left: calc(var(--separator-width) / 2) solid var(--separator-color);
+          border-top: calc(var(--separator-width) / 2) solid var(--separator-color);
+        }
+        .segment.diary span {
+           transform: rotate(-45deg) translate(0, -10%); /* Adjusted for bottom */
+        }
+
+        /* Hover Effects for Segments */
+        .segment:hover {
+          z-index: 5; /* Bring hovered segment slightly forward */
+          transform: scale(1.03); /* Slightly enlarge */
+          filter: brightness(1.1); /* Slightly brighten background */
+        }
+
+        /* Re-apply transforms for hover spans to avoid being reset/affected weirdly by parent scale */
+        /* Also scale text slightly */
+        .segment.voice:hover span { transform: rotate(-45deg) translate(0, 10%) scale(1.05); }
+        .segment.chat:hover span { transform: rotate(45deg) translate(0, 10%) scale(1.05); }
+        .segment.medical:hover span { transform: rotate(45deg) translate(0, -10%) scale(1.05); }
+        .segment.diary:hover span { transform: rotate(-45deg) translate(0, -10%) scale(1.05); }
+
+        /* Remove default link outline */
+        a:focus {
+          outline: none;
+        }
+        /* Custom focus style for accessibility */
+        a:focus-visible {
+          /* Use outline matching the segment's text color for better visibility */
+          outline: 3px solid currentColor;
+          outline-offset: -3px; /* Inset the outline slightly */
+          z-index: 11; /* Ensure focus outline is visible */
+        }
+        /* Specific focus for center circle */
+        .center-circle:focus-visible {
+             outline: 3px solid var(--text-light);
+             outline-offset: 2px; /* Offset outwards for the circle */
+        }
+
+        /* Optional: Placeholder sections if you use anchor links */
+        /*
+        section {
+           padding: 50px;
+           margin-top: 20px;
+           color: white;
+        }
+        section h2 {
+           color: var(--teal-medium);
+        }
+        */
+
+    </style>
+</head>
+<body>
+
+    <div class="eq-lab-container">
+        <div class="outer-ring">
+            <!-- Segments -->
+            <a href="https://chat.empathe.ai" target="_blank" rel="noopener noreferrer" class="segment voice">
+                <span>VOICE</span>
+            </a>
+            <a href="https://insight.empathe.ai" target="_blank" rel="noopener noreferrer" class="segment chat">
+                <span>CHAT</span>
+            </a>
+            <!-- Make anchor links point within the page if content exists -->
+            <!-- If no content exists yet, maybe link to '#' or disable temporarily -->
+            <a href="#medical" class="segment medical">
+                <span>MEDICAL</span>
+            </a>
+            <a href="#diary" class="segment diary">
+                <span>DIARY</span>
+            </a>
+
+            <!-- Center Circle - Links back to the main site root -->
+            <a href="https://empathe.ai" class="center-circle">
+                <span>EQ</span>
+                <span>LAB</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Optional: Add content sections here linked by the IDs -->
+    <!-- Uncomment and style these if you want the #medical and #diary links to scroll -->
+    <!--
+    <section id="medical" style="margin-top: calc(var(--ring-size) + 50px);">
+        <h2 style="color: var(--teal-medium);">Medical Section</h2>
+        <p style="color: var(--text-grey);">Content related to the medical segment...</p>
+    </section>
+    <section id="diary">
+        <h2 style="color: var(--teal-medium);">Diary Section</h2>
+        <p style="color: var(--text-grey);">Content related to the diary segment...</p>
+    </section>
+    -->
+
+</body>
+</html>
