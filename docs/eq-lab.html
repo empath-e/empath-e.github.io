@@ -4,23 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EQ Lab Demo - Empathic Intelligence Inc.</title>
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" /> <!-- Assuming you have this -->
     <style>
-        /* CSS directly embedded from main.css */
+        /* CSS Improvements */
 
         /* Basic Reset & Body Styling */
         :root {
           --bg-color: #151B27; /* Dark background */
+          --bg-center-glow: #1e2533; /* Slightly lighter for center of gradient */
           --teal-dark: #e4e4d8; /* Light cream/beige for center */
           --teal-medium: #f0f0e0; /* Slightly lighter cream/beige for top segments */
+          --teal-medium-hover: #ffffff; /* Brighter hover for light segments */
           --grey-dark: #4a4a4a; /* Dark grey for bottom segments */
-          --text-light: #333;    /* Darker text for light backgrounds */
-          --text-grey: #a0a0a0; /* Lighter grey text for dark backgrounds */
+          --text-light: #333333;    /* Darker text for light backgrounds */
+          /* --text-grey: #a0a0a0; /* Original Lighter grey text */
+          --text-grey: #b0b0b0; /* Increased contrast for dark backgrounds */
           --separator-color: #151B27; /* Separator line color (matches background) */
 
           --ring-size: 400px; /* Adjust size of the whole thing */
           --center-size-ratio: 0.5; /* Center circle size relative to ring */
           --separator-width: 4px; /* Thickness of the separator lines */
           --transition-speed: 0.3s;
+          --transition-timing: ease-in-out; /* Smoother timing */
 
           /* Adjust ring size for smaller screens */
           @media (max-width: 480px) {
@@ -31,16 +36,30 @@
           }
         }
 
+        /* Animation Definition */
+        @keyframes fadeScaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
         body {
           margin: 0;
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
             Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-          background-color: var(--bg-color);
+          /* Added subtle background gradient */
+          background: radial-gradient(ellipse at center, var(--bg-center-glow) 0%, var(--bg-color) 70%);
+          background-color: var(--bg-color); /* Fallback */
           display: flex;
           justify-content: center;
           align-items: center;
-          min-height: 100dvh; /* Use dvh for better mobile viewport height */
-          overflow: hidden; /* Hide potential overflows during scaling */
+          min-height: 100dvh;
+          overflow: hidden;
         }
 
         /* Container */
@@ -48,6 +67,9 @@
           position: relative;
           width: var(--ring-size);
           height: var(--ring-size);
+          /* Entry Animation */
+          animation: fadeScaleIn 0.6s var(--transition-timing) forwards;
+          opacity: 0; /* Start hidden for animation */
         }
 
         /* Outer Ring - Acts as positioning context */
@@ -59,7 +81,7 @@
           height: 100%;
           border-radius: 50%;
           overflow: hidden; /* Clip segments to the circle */
-          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Slightly darker shadow on dark bg */
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); /* Slightly enhanced shadow */
         }
 
         /* Center Circle */
@@ -71,30 +93,34 @@
           left: 50%;
           transform: translate(-50%, -50%);
           background-color: var(--teal-dark); /* Light background */
-          background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' opacity='0.33' viewBox='0 0 24 24' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xml:space='preserve' style='fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;'%3E%3Cg transform='matrix(0.75288,0,0,0.75288,2.91932,5.02019)'%3E%3Cpath d='M10,20L10,14L14,14L14,20L19,20L19,12L22,12L12,3L2,12L5,12L5,20L10,20Z' style='fill:rgb(51,51,51);fill-rule:nonzero;'/%3E%3C/g%3E%3Cg transform='matrix(1,0,0,1,0.950619,1.64228)'%3E%3Cg transform='matrix(0.696126,-0.717919,0.717919,0.696126,-4.81729,5.11752)'%3E%3Ctext x='3.637px' y='8.249px' style='font-family:Arial-BoldMT, Arial, sans-serif;font-weight:700;font-size:3.466px;fill:rgb(51,51,51);'%3EE%3C/text%3E%3C/g%3E%3Cg transform='matrix(0.887161,-0.461461,0.461461,0.887161,-2.43098,3.15545)'%3E%3Ctext x='5.237px' y='6.549px' style='font-family:Arial-BoldMT, Arial, sans-serif;font-weight:700;font-size:3.466px;fill:rgb(51,51,51);'%3EM%3C/text%3E%3C/g%3E%3Cg transform='matrix(0.980679,-0.195623,0.195623,0.980679,-0.87557,1.63313)'%3E%3Ctext x='7.83px' y='5.249px' style='font-family:Arial-BoldMT, Arial, sans-serif;font-weight:700;font-size:3.466px;fill:rgb(51,51,51);'%3EP%3C/text%3E%3C/g%3E%3Cg transform='matrix(0.999966,0.00830352,-0.00830352,0.999966,0.0402687,-0.0816043)'%3E%3Ctext x='9.848px' y='4.809px' style='font-family:Arial-BoldMT, Arial, sans-serif;font-weight:700;font-size:3.466px;fill:rgb(51,51,51);'%3EA%3C/text%3E%3C/g%3E%3Cg transform='matrix(0.977819,0.209451,-0.209451,0.977819,1.278,-2.42771)'%3E%3Ctext x='12.101px' y='4.82px' style='font-family:Arial-BoldMT, Arial, sans-serif;font-weight:700;font-size:3.466px;fill:rgb(51,51,51);'%3ET%3C/text%3E%3C/g%3E%3Cg transform='matrix(0.897487,0.441041,-0.441041,0.897487,3.76722,-5.72338)'%3E%3Ctext x='14.195px' y='5.242px' style='font-family:Arial-BoldMT, Arial, sans-serif;font-weight:700;font-size:3.466px;fill:rgb(51,51,51);'%3EH%3C/text%3E%3C/g%3E%3Cg transform='matrix(0.786835,0.617163,-0.617163,0.786835,7.45364,-8.75651)'%3E%3Ctext x='16.403px' y='6.412px' style='font-family:Arial-BoldMT, Arial, sans-serif;font-weight:700;font-size:3.466px;fill:rgb(51,51,51);'%3EI%3C/text%3E%3C/g%3E%3Cg transform='matrix(0.619021,0.785374,-0.785374,0.619021,12.0233,-10.8918)'%3E%3Ctext x='17.238px' y='6.947px' style='font-family:Arial-BoldMT, Arial, sans-serif;font-weight:700;font-size:3.466px;fill:rgb(51,51,51);'%3EC%3C/text%3E%3C/g%3E%3C/g%3E%3C/svg%3E");          background-repeat: no-repeat;
-          background-position: center;
-          background-size: 75%;
           border-radius: 50%;
-          display: flex;
-          flex-direction: column;
+          display: flex; /* Use flex to center the logo */
           justify-content: center;
           align-items: center;
           text-decoration: none;
-          color: var(--text-light); /* Dark text */
-          font-size: calc(var(--ring-size) * 0.06); /* Responsive font size */
-          font-weight: bold;
-          line-height: 1.1;
-          text-align: center;
-          z-index: 10; /* Ensure it's above segments */
-          transition: transform var(--transition-speed) ease-out,
-                      background-color var(--transition-speed) ease-out;
-          border: var(--separator-width) solid var(--separator-color); /* Separator border */
+          z-index: 10;
+          transition: transform var(--transition-speed) var(--transition-timing),
+                      background-color var(--transition-speed) var(--transition-timing);
+          border: var(--separator-width) solid var(--separator-color);
           box-sizing: border-box;
+          padding: 10%; /* Add padding around the logo */
         }
+
+        /* --- New: Logo inside Center Circle --- */
+        .center-logo {
+           display: block;
+           width: 100%; /* Logo takes up padded space */
+           height: auto;
+           max-width: 100%; /* Ensure it doesn't overflow padding */
+           object-fit: contain; /* Scale logo correctly */
+           filter: invert(16%) sepia(0%) saturate(0%) hue-rotate(183deg) brightness(91%) contrast(84%);
+           pointer-events: none; /* Prevent image interfering with link hover */
+        }
+        /* --- End Logo Styling --- */
+
 
         .center-circle:hover {
           transform: translate(-50%, -50%) scale(1.05);
-          background-color: white; /* Brighten slightly on hover */
         }
 
         /* Segments - Common Styles */
@@ -102,25 +128,26 @@
           position: absolute;
           width: 50%;
           height: 50%;
-          overflow: hidden; /* Hide text overflow */
+          overflow: hidden;
           display: flex;
           justify-content: center;
           align-items: center;
           text-decoration: none;
-          font-size: calc(var(--ring-size) * 0.06); /* Responsive font size */
+          font-size: calc(var(--ring-size) * 0.06);
           font-weight: 600;
-          box-sizing: border-box; /* Include borders in size calculation */
-          transition: transform var(--transition-speed) ease-out,
-                      filter var(--transition-speed) ease-out,
-                      background-color var(--transition-speed) ease-out;
-          -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+          box-sizing: border-box;
+          transition: transform var(--transition-speed) var(--transition-timing),
+                      filter var(--transition-speed) var(--transition-timing),
+                      background-color var(--transition-speed) var(--transition-timing),
+                      opacity var(--transition-speed) var(--transition-timing);
+          -webkit-tap-highlight-color: transparent;
         }
 
         .segment span {
           display: block;
           transform-origin: center center;
           text-align: center;
-          transition: transform var(--transition-speed) ease-out;
+          transition: transform var(--transition-speed) var(--transition-timing);
         }
 
         /* Individual Segment Positioning & Styling */
@@ -130,21 +157,25 @@
           top: 0;
           left: 0;
           background-color: var(--teal-medium);
-          color: var(--text-light); /* Dark text on light background */
-          transform-origin: bottom right; /* Rotate around center of the main circle */
+          color: var(--text-light);
+          transform-origin: bottom right;
           border-right: calc(var(--separator-width) / 2) solid var(--separator-color);
           border-bottom: calc(var(--separator-width) / 2) solid var(--separator-color);
         }
         .segment.voice span {
-          transform: rotate(-45deg) translate(0, 10%); /* Adjust text position/angle slightly */
+          transform: rotate(-45deg) translate(0, 10%);
         }
+        .segment.voice:hover {
+           background-color: var(--teal-medium-hover); /* Hover state for light segments */
+        }
+
 
         /* CHAT (Top Right) */
         .segment.chat {
           top: 0;
           right: 0;
           background-color: var(--teal-medium);
-          color: var(--text-light); /* Dark text on light background */
+          color: var(--text-light);
           transform-origin: bottom left;
           border-left: calc(var(--separator-width) / 2) solid var(--separator-color);
           border-bottom: calc(var(--separator-width) / 2) solid var(--separator-color);
@@ -152,50 +183,59 @@
         .segment.chat span {
           transform: rotate(45deg) translate(0, 10%);
         }
+         .segment.chat:hover {
+           background-color: var(--teal-medium-hover); /* Hover state for light segments */
+        }
 
-        /* MEDICAL (Bottom Left) */
+        /* MEDICAL (Bottom Left) - Disabled appearance */
         .segment.medical {
-          pointer-events: none;
+          pointer-events: none; /* Disable click */
+          cursor: not-allowed; /* Indicate disabled state */
+          opacity: 0.6; /* Make visually distinct */
           bottom: 0;
           left: 0;
           background-color: var(--grey-dark);
-          color: var(--text-grey); /* Light text on dark background */
+          color: var(--text-grey); /* Using higher contrast grey */
           transform-origin: top right;
           border-right: calc(var(--separator-width) / 2) solid var(--separator-color);
           border-top: calc(var(--separator-width) / 2) solid var(--separator-color);
         }
         .segment.medical span {
-           transform: rotate(45deg) translate(0, -10%); /* Adjusted for bottom */
+           transform: rotate(45deg) translate(0, -10%);
         }
 
-        /* DIARY (Bottom Right) */
+        /* DIARY (Bottom Right) - Disabled appearance */
         .segment.diary {
-          pointer-events: none;
+          pointer-events: none; /* Disable click */
+          cursor: not-allowed; /* Indicate disabled state */
+          opacity: 0.6; /* Make visually distinct */
           bottom: 0;
           right: 0;
           background-color: var(--grey-dark);
-           color: var(--text-grey); /* Light text on dark background */
+           color: var(--text-grey); /* Using higher contrast grey */
           transform-origin: top left;
           border-left: calc(var(--separator-width) / 2) solid var(--separator-color);
           border-top: calc(var(--separator-width) / 2) solid var(--separator-color);
         }
         .segment.diary span {
-           transform: rotate(-45deg) translate(0, -10%); /* Adjusted for bottom */
+           transform: rotate(-45deg) translate(0, -10%);
         }
 
-        /* Hover Effects for Segments */
-        .segment:hover {
+        /* Hover Effects for Segments (excluding disabled ones) */
+        .segment.voice:hover,
+        .segment.chat:hover {
           z-index: 5; /* Bring hovered segment slightly forward */
           transform: scale(1.03); /* Slightly enlarge */
-          filter: brightness(1.1); /* Slightly brighten background */
+          /* Removed filter brightness, using background-color change instead */
         }
 
         /* Re-apply transforms for hover spans to avoid being reset/affected weirdly by parent scale */
         /* Also scale text slightly */
         .segment.voice:hover span { transform: rotate(-45deg) translate(0, 10%) scale(1.05); }
         .segment.chat:hover span { transform: rotate(45deg) translate(0, 10%) scale(1.05); }
-        .segment.medical:hover span { transform: rotate(45deg) translate(0, -10%) scale(1.05); }
-        .segment.diary:hover span { transform: rotate(-45deg) translate(0, -10%) scale(1.05); }
+        /* No hover scale needed for disabled segments' text */
+        /* .segment.medical:hover span { transform: rotate(45deg) translate(0, -10%) scale(1.05); } */
+        /* .segment.diary:hover span { transform: rotate(-45deg) translate(0, -10%) scale(1.05); } */
 
         /* Remove default link outline */
         a:focus {
@@ -203,28 +243,15 @@
         }
         /* Custom focus style for accessibility */
         a:focus-visible {
-          /* Use outline matching the segment's text color for better visibility */
-          outline: 3px solid currentColor;
-          outline-offset: -3px; /* Inset the outline slightly */
+          outline: 3px solid currentColor; /* Use segment text color */
+          outline-offset: -3px; /* Inset outline */
           z-index: 11; /* Ensure focus outline is visible */
         }
-        /* Specific focus for center circle */
+        /* Specific focus for center circle (using a light color for contrast) */
         .center-circle:focus-visible {
-             outline: 3px solid var(--text-light);
+             outline: 3px solid var(--teal-medium-hover);
              outline-offset: 2px; /* Offset outwards for the circle */
         }
-
-        /* Optional: Placeholder sections if you use anchor links */
-        /*
-        section {
-           padding: 50px;
-           margin-top: 20px;
-           color: white;
-        }
-        section h2 {
-           color: var(--teal-medium);
-        }
-        */
 
     </style>
 </head>
@@ -232,40 +259,32 @@
 
     <div class="eq-lab-container">
         <div class="outer-ring">
-            <!-- Segments -->
+            <!-- Active Segments -->
             <a href="https://chat.empathe.ai" target="_blank" rel="noopener noreferrer" class="segment voice">
                 <span>VOICE</span>
             </a>
             <a href="https://insight.empathe.ai" target="_blank" rel="noopener noreferrer" class="segment chat">
                 <span>CHAT</span>
             </a>
-            <!-- Make anchor links point within the page if content exists -->
-            <!-- If no content exists yet, maybe link to '#' or disable temporarily -->
-            <a href="#medical" class="segment medical" disabled aria-disabled="true">
+
+            <!-- Inactive Segments -->
+            <a href="#medical" class="segment medical" aria-disabled="true">
                 <span>MEDICAL</span>
             </a>
-            <a href="#diary" class="segment diary" disabled aria-disabled="true">
+            <a href="#diary" class="segment diary" aria-disabled="true">
                 <span>DIARY</span>
             </a>
 
-            <!-- Center Circle - Links back to the main site root -->
-            <a href="https://empathe.ai" class="center-circle">
+            <!-- Center Circle with Logo -->
+            <a href="https://empathe.ai" class="center-circle" title="Back to Empathic Intelligence Home">
+                <!-- Replaced SVG background with IMG tag -->
+                <img src="static/ei.svg" alt="Empathic Intelligence Inc. Logo - Home" class="center-logo">
             </a>
         </div>
     </div>
 
-    <!-- Optional: Add content sections here linked by the IDs -->
-    <!-- Uncomment and style these if you want the #medical and #diary links to scroll -->
-    <!--
-    <section id="medical" style="margin-top: calc(var(--ring-size) + 50px);">
-        <h2 style="color: var(--teal-medium);">Medical Section</h2>
-        <p style="color: var(--text-grey);">Content related to the medical segment...</p>
-    </section>
-    <section id="diary">
-        <h2 style="color: var(--teal-medium);">Diary Section</h2>
-        <p style="color: var(--text-grey);">Content related to the diary segment...</p>
-    </section>
-    -->
+    <!-- Optional Content Sections (remain commented out as before) -->
+    <!-- ... -->
 
 </body>
 </html>
