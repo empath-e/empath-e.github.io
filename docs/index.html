@@ -11,6 +11,12 @@
 
   <title>Empathic Intelligence - Coming Soon</title>
 
+  <link rel="icon" type="image/png" href="/static/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+  <link rel="shortcut icon" href="/static/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png" />
+  <link rel="manifest" href="/static/site.webmanifest" />
+
   <!-- Open Graph Meta Tags (Keep these as they are good for sharing) -->
   <meta property="og:title" content="Empathic Intelligence Inc." />
   <meta property="og:description" content="Exploring the frontiers of Empathic AI. EQ Lab Demo available." />
@@ -30,7 +36,7 @@
       --bg-color: #151B27;
       --text-primary: #e4e4d8; /* Was --teal-dark */
       --text-secondary: #a0a0a0; /* Lighter grey text from demo */
-      --accent-color: #f0f0e0; /* Was --teal-medium */
+      --accent-color: #E4D1A8; /* Was --teal-medium */
       --separator-color: #2a3140; /* A slightly lighter separator */
       --transition-speed: 0.3s;
     }
@@ -84,13 +90,19 @@
     /* Company Name */
     .company-name {
       font-size: 2.2rem; /* Adjust size as needed */
-      color: var(--text-primary);
+      background: -webkit-linear-gradient(#E4D1A8, #f0f0e0);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       font-weight: 600; /* Make it slightly bolder */
       line-height: 1.2;
       letter-spacing: 0.5px;
     }
     .company-name b { /* Style the slashes */
-       color: var(--accent-color);
+       background: -webkit-linear-gradient(#E4D1A8, #f0f0e0);
+       background-clip: text;
+       -webkit-background-clip: text;
+       -webkit-text-fill-color: transparent;
        font-weight: bold; /* Or keep normal */
        display: inline-block; /* Helps with spacing/alignment */
        margin: 0 -2px; /* Fine-tune spacing around slashes */
@@ -99,7 +111,11 @@
     /* Subtitle / Tagline */
     .tagline {
       font-size: 1.1rem;
-      color: var(--text-secondary);
+      /* color: var(--text-secondary); */
+      background: -webkit-linear-gradient(#E4D1A8, #f0f0e0);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       letter-spacing: 0.5px;
     }
 
@@ -181,7 +197,7 @@
 
   <div class="content-wrapper">
       <!-- Logo Image -->
-      <img src="static/EMPATHE.svg" alt="Empathic Intelligence Inc. Logo" class="logo" />
+      <img src="static/ei.svg" alt="Empathic Intelligence Inc. Logo" class="logo" />
 
       <!-- Company Name -->
       <h1 class="company-name">EMPATHE</h1>
