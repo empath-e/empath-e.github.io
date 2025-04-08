@@ -20,7 +20,8 @@
   <!-- Optional: Google Font for Raleway -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@400,600&display=swap" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap" rel="stylesheet"> -->
 
   <!-- Open Graph Meta Tags (Keep these as they are good for sharing) -->
   <meta property="og:title" content="Empathic Evolution" />
@@ -106,10 +107,13 @@
 
     /* Company Name */
     .company-name {
+      font-family: "Nunito", sans-serif;
+      font-optical-sizing: auto;
+      font-style: normal;
       font-size: 2.2rem;
       font-weight: 600;
       line-height: 1.2;
-      letter-spacing: 0.15rem;
+      letter-spacing: 0.1rem;
       cursor: default; /* Indicate it's not clickable, despite hover */
     }
     .company-name b { /* Style the slashes */
@@ -120,13 +124,16 @@
 
     /* Slogan */
     .company-slogan {
-      font-size: 1.07rem;
+      font-size: 1.05rem;
+      font-family: "Nunito", sans-serif;
+      font-optical-sizing: auto;
+      font-style: normal;
       color: var(--text-secondary);
       font-weight: 400;
       line-height: 1.2;
       letter-spacing: 0.5px;
       /* Changed font preference */
-      font-family: 'Raleway', 'Quicksand', 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      /* font-family: 'Raleway', 'Quicksand', 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
     }
 
     /* Tagline / Subtitle */
@@ -147,7 +154,7 @@
     .rotate-hundredeighty {
       display: inline-block;
       transform: rotate(180deg);
-      padding-bottom: 3px; /* Keep original adjustment */
+      padding-top: 0.1rem; /* Keep original adjustment */
       /* Added transition for smooth hover effect (in and out) */
       transition: transform var(--transition-speed) var(--transition-timing),
                   color var(--transition-speed) var(--transition-timing);
@@ -159,7 +166,41 @@
       color: var(--accent-color);  /* Change color to accent */
     }
     /* --- End of Hover effect --- */
-
+    
+    /* --- NEW: Word rearrangement effect --- */
+    .evolution-word {
+      display: inline-block;
+      position: relative;
+      height: 1.2em;
+      width: auto;
+    }
+    
+    .evolution-word span {
+      position: absolute;
+      transition: all var(--transition-speed) var(--transition-timing);
+      display: inline-block;
+    }
+    
+    /* Default positions (reversed word) */
+    .evolution-word .letter-n { left: 0; }
+    .evolution-word .letter-o { left: 0.5em; }
+    .evolution-word .letter-i { left: 1em; }
+    .evolution-word .letter-t { left: 1.5em; }
+    .evolution-word .letter-u { left: 2em; }
+    .evolution-word .letter-l { left: 2.5em; }
+    .evolution-word .letter-o2 { left: 3em; }
+    .evolution-word .letter-v { left: 3.5em; }
+    
+    /* Hovered positions (correct word) */
+    .evolution-word:hover .letter-n { left: 7em; } /* Move 'n' to end */
+    .evolution-word:hover .letter-o { left: 4em; } /* 'o' becomes 5th letter */
+    .evolution-word:hover .letter-i { left: 5em; } /* 'i' becomes 6th letter */
+    .evolution-word:hover .letter-t { left: 3em; } /* 't' becomes 4th letter */
+    .evolution-word:hover .letter-u { left: 2em; } /* 'u' becomes 3rd letter */
+    .evolution-word:hover .letter-l { left: 1.5em; } /* 'l' becomes 2nd letter */
+    .evolution-word:hover .letter-o2 { left: 1em; } /* 'o2' becomes 1st letter after E */
+    .evolution-word:hover .letter-v { left: 0.5em; } /* 'v' becomes 2nd letter */
+    /* --- End of Word rearrangement effect --- */
 
     /* Demo button styling */
     .demo-button {
@@ -244,7 +285,7 @@
       <!-- Company Name -->
       <h1 class="company-name">E<span class="text-darker">mpath</span><span class="rotate-hundredeighty">E</span></h1>
        <!-- Company Slogan -->
-      <h2 class="company-slogan reduced-margin"><span class="text-lighter">E</span><span class="text-darker">mpathic</span> <span class="text-lighter">E</span><span class="text-darker">volution</span></h2>
+      <h2 class="company-slogan reduced-margin"><span class="text-lighter">E</span><span class="text-darker">mpathic</span> <span class="text-lighter"></span><span class="text-darker">noitulov</span><span class="rotate-hundredeighty text-lighter">E</span></h2>
 
       <!-- Link to the Demo -->
       <a href="https://empathe.ai/eq-lab" target="_blank" rel="noopener noreferrer" class="demo-button">EQ LAB DEMO</a>
