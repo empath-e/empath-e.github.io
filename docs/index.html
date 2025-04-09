@@ -17,20 +17,19 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png" />
   <link rel="manifest" href="/static/site.webmanifest" />
 
-  <!-- Optional: Google Font for Raleway -->
+  <!-- Optional: Google Font for Nunito -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@400,600&display=swap" rel="stylesheet">
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
-  <!-- Open Graph Meta Tags (Keep these as they are good for sharing) -->
+  <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="Empathic Evolution" />
   <meta property="og:description" content="Freeing Emotional Superintelligence. EQ Lab Demo available." />
   <meta property="og:image" content="https://empathe.ai/static/preview.webp" />
   <meta property="og:url" content="https://empathe.ai/" />
   <meta property="og:type" content="website" />
 
-  <!-- Twitter Card Meta Tags (Keep these) -->
+  <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Empathic Evolution" />
   <meta name="twitter:description" content="Freeing Emotional Superintelligence. EQ Lab Demo available." />
@@ -59,12 +58,13 @@
 
     html {
       background-color: var(--bg-color);
+      height: 100%; /* Ensure HTML takes full height */
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      font-family: "Nunito", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
                    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      min-height: 100svh;
+      min-height: 100svh; /* Use svh for mobile viewport height */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -73,6 +73,32 @@
       padding: 30px 20px;
       color: var(--text-primary);
       background-color: var(--bg-color);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Star background canvas */
+    #star-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.6; /* Subtle stars that don't overwhelm content */
+    }
+
+    /* Make sure all content sits on top of the star background */
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
     }
 
     .text-lighter {
@@ -81,16 +107,6 @@
 
     .text-darker {
       color: var(--text-darker);
-    }
-
-    /* Main content container */
-    .content-wrapper {
-      max-width: 600px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 25px;
     }
 
     /* Custom class to reduce spacing between company name and slogan */
@@ -132,8 +148,6 @@
       font-weight: 400;
       line-height: 1.2;
       letter-spacing: 0.5px;
-      /* Changed font preference */
-      /* font-family: 'Raleway', 'Quicksand', 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
     }
 
     /* Tagline / Subtitle */
@@ -166,41 +180,9 @@
       color: var(--accent-color);  /* Change color to accent */
     }
     /* --- End of Hover effect --- */
-    
-    /* --- NEW: Word rearrangement effect --- */
-    .evolution-word {
-      display: inline-block;
-      position: relative;
-      height: 1.2em;
-      width: auto;
-    }
-    
-    .evolution-word span {
-      position: absolute;
-      transition: all var(--transition-speed) var(--transition-timing);
-      display: inline-block;
-    }
-    
-    /* Default positions (reversed word) */
-    .evolution-word .letter-n { left: 0; }
-    .evolution-word .letter-o { left: 0.5em; }
-    .evolution-word .letter-i { left: 1em; }
-    .evolution-word .letter-t { left: 1.5em; }
-    .evolution-word .letter-u { left: 2em; }
-    .evolution-word .letter-l { left: 2.5em; }
-    .evolution-word .letter-o2 { left: 3em; }
-    .evolution-word .letter-v { left: 3.5em; }
-    
-    /* Hovered positions (correct word) */
-    .evolution-word:hover .letter-n { left: 7em; } /* Move 'n' to end */
-    .evolution-word:hover .letter-o { left: 4em; } /* 'o' becomes 5th letter */
-    .evolution-word:hover .letter-i { left: 5em; } /* 'i' becomes 6th letter */
-    .evolution-word:hover .letter-t { left: 3em; } /* 't' becomes 4th letter */
-    .evolution-word:hover .letter-u { left: 2em; } /* 'u' becomes 3rd letter */
-    .evolution-word:hover .letter-l { left: 1.5em; } /* 'l' becomes 2nd letter */
-    .evolution-word:hover .letter-o2 { left: 1em; } /* 'o2' becomes 1st letter after E */
-    .evolution-word:hover .letter-v { left: 0.5em; } /* 'v' becomes 2nd letter */
-    /* --- End of Word rearrangement effect --- */
+
+    /* --- Word rearrangement effect (If needed, keep it) --- */
+    /* Your existing CSS for .evolution-word */
 
     /* Demo button styling */
     .demo-button {
@@ -250,14 +232,13 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-
     /* Responsive adjustments */
     @media (max-width: 480px) {
       .company-name {
         font-size: 1.8rem;
       }
        .company-slogan {
-         font-size: 1.3rem; /* Adjust slogan size too */
+         font-size: 1rem; /* Adjusted from 1.3rem for better balance */
        }
       .tagline {
         font-size: 1rem;
@@ -273,10 +254,11 @@
         width: 30px;
       }
     }
-
   </style>
 </head>
 <body>
+  <!-- Star background canvas -->
+  <canvas id="star-background"></canvas>
 
   <div class="content-wrapper">
       <!-- Logo Image -->
@@ -306,6 +288,111 @@
          </a>
       </div>
   </div>
+
+  <!-- Star animation script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const canvas = document.getElementById('star-background');
+      const ctx = canvas.getContext('2d');
+      let stars = []; // Keep stars array in a scope accessible by resize and animate
+      let animationFrameId; // To potentially cancel animation frame if needed
+
+      const maxStarRadius = 1.5; // Slightly smaller max radius
+      const baseTwinkleSpeed = 0.005;
+      const baseAlpha = 0.7; // Base max alpha from CSS opacity
+
+      function createStars(numStars) {
+        stars = []; // Clear existing stars
+        for (let i = 0; i < numStars; i++) {
+          stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() * maxStarRadius,
+            // Start brightness between 0.3 and 1.0
+            brightness: Math.random() * 0.7 + 0.3,
+            // Random initial direction
+            direction: Math.random() > 0.5 ? 1 : -1,
+             // Vary twinkle speed slightly per star
+            twinkleSpeed: baseTwinkleSpeed * (Math.random() * 0.3 + 0.8) // Speed between 50% and 100% of base
+          });
+        }
+      }
+
+      // Set canvas to full window size and regenerate stars
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        // Responsive number of stars (adjust density as needed)
+        const numStars = Math.floor((canvas.width * canvas.height) / 1500); // Increase denominator for fewer stars
+        createStars(numStars);
+      }
+
+      // Initialize canvas size and stars
+      resizeCanvas();
+
+      // Update canvas size and stars when window is resized
+      window.addEventListener('resize', resizeCanvas);
+
+      // Animation
+      function animate() {
+        animationFrameId = requestAnimationFrame(animate); // Store the frame ID
+
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw stars
+        for (let i = 0; i < stars.length; i++) {
+          const star = stars[i];
+
+          // Update brightness for twinkling effect
+          star.brightness += star.direction * star.twinkleSpeed;
+
+          // Reverse direction when reaching brightness limits (e.g., 0.3 to 1.0)
+          if (star.brightness <= 0.3) {
+            star.brightness = 0.3; // Clamp to min
+            star.direction = 1; // Change direction to increase brightness
+          } else if (star.brightness >= 1.0) {
+            star.brightness = 1.0; // Clamp to max
+            star.direction = -1; // Change direction to decrease brightness
+          }
+
+          // Calculate alpha based on brightness and baseAlpha
+          const currentAlpha = star.brightness * baseAlpha;
+
+          // Draw the star
+          ctx.beginPath();
+          // Make radius also slightly dependent on brightness for more shimmer
+          ctx.arc(star.x, star.y, star.radius * star.brightness, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 255, 255, ${currentAlpha})`;
+          ctx.fill();
+
+          // Optional: Add subtle glow effect for brighter stars (can be demanding)
+          if (star.brightness > 0.8) {
+             const glowAlpha = (star.brightness - 0.8) * 0.5 * baseAlpha; // Max 0.1 * baseAlpha
+             if (glowAlpha > 0) { // Only draw if alpha is positive
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius * star.brightness * 1.5, 0, Math.PI * 2); // Slightly larger radius for glow
+                ctx.fillStyle = `rgba(255, 255, 255, ${glowAlpha})`;
+                ctx.fill();
+             }
+          }
+        }
+      }
+
+      // Start animation
+      animate();
+
+      // Optional: Pause animation when tab is not visible
+      document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+          cancelAnimationFrame(animationFrameId);
+        } else {
+          animate(); // Restart animation when tab becomes visible
+        }
+      });
+
+    });
+  </script>
 
 </body>
 </html>
