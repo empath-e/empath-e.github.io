@@ -199,14 +199,12 @@
            background-color: var(--teal-medium-hover); /* Hover state for light segments */
         }
 
-        /* MEDICAL (Bottom Left) - Disabled appearance */
+        /* MEDICAL (Bottom Left) */
         .segment.medical {
-          pointer-events: none; /* Disable click */
-          cursor: not-allowed; /* Indicate disabled state */
-          opacity: 0.6; /* Make visually distinct */
+          opacity: 1; /* Make fully visible */
           bottom: 0;
           left: 0;
-          background-color: var(--grey-dark);
+          background-color: var(--grey-dark); /* Match diary background */
           color: var(--text-grey); /* Using higher contrast grey */
           transform-origin: top right;
           border-right: calc(var(--separator-width) / 2) solid var(--separator-color);
@@ -220,11 +218,11 @@
         .segment.diary {
           pointer-events: none; /* Disable click */
           cursor: not-allowed; /* Indicate disabled state */
-          opacity: 0.6; /* Make visually distinct */
+          opacity: 1; /* Make visually distinct */
           bottom: 0;
           right: 0;
-          background-color: var(--grey-dark);
-           color: var(--text-grey); /* Using higher contrast grey */
+          background-color: var(--grey-dark); /* Match API background */
+          color: var(--text-grey); /* Using higher contrast grey */
           transform-origin: top left;
           border-left: calc(var(--separator-width) / 2) solid var(--separator-color);
           border-top: calc(var(--separator-width) / 2) solid var(--separator-color);
@@ -235,7 +233,8 @@
 
         /* Hover Effects for Segments (excluding disabled ones) */
         .segment.voice:hover,
-        .segment.chat:hover {
+        .segment.chat:hover,
+        .segment.medical:hover {
           z-index: 5; /* Bring hovered segment slightly forward */
           transform: scale(1.03); /* Slightly enlarge */
           /* Removed filter brightness, using background-color change instead */
@@ -245,8 +244,8 @@
         /* Also scale text slightly */
         .segment.voice:hover span { transform: rotate(-45deg) translate(0, 10%) scale(1.05); }
         .segment.chat:hover span { transform: rotate(45deg) translate(0, 10%) scale(1.05); }
+        .segment.medical:hover span { transform: rotate(45deg) translate(0, -10%) scale(1.05); }
         /* No hover scale needed for disabled segments' text */
-        /* .segment.medical:hover span { transform: rotate(45deg) translate(0, -10%) scale(1.05); } */
         /* .segment.diary:hover span { transform: rotate(-45deg) translate(0, -10%) scale(1.05); } */
 
         /* Remove default link outline */
@@ -281,9 +280,8 @@
                 <span>CHAT</span>
             </a>
 
-            <!-- Inactive Segments -->
-            <a href="#medical" class="segment medical" aria-disabled="true">
-                <span>MEDICAL</span>
+            <a href="https://api-demo.empathe.ai" rel="noopener noreferrer" class="segment medical">
+                <span>API</span>
             </a>
             <a href="#diary" class="segment diary" aria-disabled="true">
                 <span>DIARY</span>
@@ -292,7 +290,7 @@
             <!-- Center Circle with Logo -->
             <a href="https://empathe.ai" class="center-circle" title="Back to Empathic Intelligence Home">
                 <!-- Replaced SVG background with IMG tag -->
-                <img src="static/ei.svg" alt="Empathic Intelligence Inc. Logo - Home" class="center-logo">
+                <img src="static/logo.svg" alt="Empathic Intelligence Inc. Logo - Home" class="center-logo">
             </a>
         </div>
     </div>
